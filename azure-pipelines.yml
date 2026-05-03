@@ -10,9 +10,14 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+# Step 1: Show files (for safety/debug)
+- script: ls -R
+  displayName: 'Show project structure'
+
+# Step 2: Build using Maven
 - task: Maven@4
   inputs:
-    mavenPomFile: 'Javateam/pom.xml'
+    mavenPomFile: 'Javateam-DarchetypeArtifactId=maven-archetype-quickstart/pom.xml'
     mavenOptions: '-Xmx3072m'
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.8'
