@@ -10,12 +10,13 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-# Debug step (optional but useful)
-- script: ls -R
-  displayName: 'Show project structure'
-
-# Build step
-- script: |
-    cd "Javateam-DarchetypeArtifactId=maven-archetype-quickstart"
-    mvn -B clean install -DskipTests
-  displayName: 'Build Maven Project'
+- task: Maven@4
+  inputs:
+    mavenPomFile: 'Javateam/pom.xml'
+    mavenOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.8'
+    jdkArchitectureOption: 'x64'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    goals: 'clean install'
