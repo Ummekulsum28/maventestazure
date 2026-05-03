@@ -11,14 +11,9 @@ pool:
 
 steps:
 - script: ls -R
-  displayName: 'Show project structure'
+  displayName: 'Check files'
 
-- task: Maven@4
-  inputs:
-    mavenPomFile: 'Javateam-DarchetypeArtifactId=maven-archetype-quickstart/pom.xml'
-    mavenOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.8'
-    jdkArchitectureOption: 'x64'
-    publishJUnitResults: false
-    goals: 'clean install -DskipTests'
+- script: |
+    cd Javateam-DarchetypeArtifactId=maven-archetype-quickstart
+    mvn clean install -DskipTests
+  displayName: 'Run Maven Build'
