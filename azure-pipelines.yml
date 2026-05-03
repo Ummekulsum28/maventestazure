@@ -10,10 +10,12 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+# Debug step (optional but useful)
 - script: ls -R
-  displayName: 'Check files'
+  displayName: 'Show project structure'
 
+# Build step
 - script: |
-    cd Javateam-DarchetypeArtifactId=maven-archetype-quickstart
-    mvn clean install -DskipTests
-  displayName: 'Run Maven Build'
+    cd "Javateam-DarchetypeArtifactId=maven-archetype-quickstart"
+    mvn -B clean install -DskipTests
+  displayName: 'Build Maven Project'
